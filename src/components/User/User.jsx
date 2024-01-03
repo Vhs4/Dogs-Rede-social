@@ -1,9 +1,9 @@
-import React from 'react'
-import UserHeader from './UserHeader'
-import { Route, Routes } from 'react-router-dom'
-import Feed from '../Feed/Feed'
-import UserPhotoPost from './UserPhotoPost'
-import UserStats from './UserStats'
+import React from 'react';
+import UserHeader from './UserHeader';
+import { Route, Routes } from 'react-router-dom';
+import Feed from '../Feed/Feed';
+import UserPhotoPost from './UserPhotoPost';
+import UserStats from './UserStats';
 
 const User = () => {
   return (
