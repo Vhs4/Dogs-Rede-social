@@ -2,7 +2,9 @@ import React from 'react';
 
 const NotFound = () => {
   return (
-    <div className="container" style={{display: 'flex',justifyContent: 'center', marginTop: '1rem'}}>Página não encontrada.</div>
+    <div className="container mainContainer">
+      <h1 className="title">Ocorreu um erro</h1>
+      <p>Página não encontrada.</p></div>
   )
 }
 
