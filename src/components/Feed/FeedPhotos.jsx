@@ -6,18 +6,22 @@ import Error from '../Help/Error';
 import Loading from '../Help/Loading';
 import styles from './FeedPhotos.module.css';
 
-const FeedPhotos = ({ setModalPhoto }) => {
+const FeedPhotos = ({ page, user, setModalPhoto, setInfinit }) => {
     const { data, loading, error, request } = useFetch();
 
     React.useEffect(() => {
         async function fetchPhotos() {
-            const { url, options } = PHOTOS_GET({ page: 1, total: 6, user: 0 });
-            await request(url, options);
+            const total = 3;
+
+            const { url, options } = PHOTOS_GET({ page, total, user });
+            const { response, json  } = await request(url, options);
+            if(response && response.ok && json.length < total)
+            setInfinit(false);
         }
 
         fetchPhotos()
 
-    }, [request])
+    }, [request, user, page, setInfinit])
 
     if (error) return <Error error={error} />;
     if (loading) return <Loading />;
@@ -28,7 +32,8 @@ const FeedPhotos = ({ setModalPhoto }) => {
                     {data.map(photo => (
                         <FeedPhotosItem key={photo.id}
                         photo={photo}
-                        setModalPhoto={setModalPhoto} />
+                        setModalPhoto={setModalPhoto}
+                        />
                     ))}
                 </ul>
             </div>
